@@ -173,9 +173,7 @@ select TEN
 from NV
 where NV.MSCOQUAN = 50	
 -- câu b. Tìm mã số tất cả các cơ quan từ quan hệ NV
-select COQUAN.MSCOQUAN
-from COQUAN,NV
-where COQUAN.MSCOQUAN = NV.MSCOQUAN
+select distinct MSCOQUAN from NV
 -- câu c. Tìm tên các nhân viên ở cơ quan có mã số là 15,20,25
 Select NV.TEN
 from NV
