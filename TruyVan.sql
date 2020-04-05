@@ -70,7 +70,7 @@ Having COUNT(PhanCong.MaNV)>=2
 -- câu n. Với mỗi dự án, cho biết mã số dự án, tên dự án và số lượng nhân viên phòng số 5 tham gia
 select DUAN.MaDA,DUAN.TenDA,COUNT(PhanCong.MaNV) as SoNVPhong5 
 from DUAN,PhanCong,NhanVien
-where NhanVien.Phong = 5 and NhanVien.Manv = PhanCong.MaNV
+where NhanVien.Phong = 5 and NhanVien.Manv = PhanCong.MaNV and DUAN.MaDA = PhanCong.MaDA
 group by DUAN.MaDA,DUAN.TenDA
 -- câu o. Với mỗi phòng có nhiều hơn 2 nhân viên, cho biết mã phòng và số lượng nhân viên có lương lớn hơn 25000
 select a.Phong,COUNT(a.Manv) as SoNV,COUNT(b.Manv) SoNVLuongLonHon25k
