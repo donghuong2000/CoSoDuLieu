@@ -209,25 +209,25 @@ from HOPDONG
 where NgayGiaoDK < '2002/12/31'
 --Câu 4. Cho biết người thợ nào thực hiện công việc nhiều nhất.
 select *
-from
-(select MaTho,COUNT(MaCV) as SLCV
-from CHITIET_HD 
-group by MaTho) as tem1,
-(select MAX(tem1.SLCV) as SLCV
-from
-(select MaTho,COUNT(MaCV) as SLCV
-from CHITIET_HD 
-group by MaTho) as tem1) as tem2
+from (select MaTho,COUNT(MaCV) as SLCV
+	  from CHITIET_HD 
+	  group by MaTho) as tem1,
+
+	 (select MAX(tem1.SLCV) as SLCV
+      from (select MaTho,COUNT(MaCV) as SLCV
+			from CHITIET_HD 
+			group by MaTho) as tem1) as tem2
 where tem1.SLCV = tem2.SLCV
 --Câu 5. Cho biết người thợ nào có tổng trị giá công việc được giao cao nhất.
 select te3.MaTho
-from(select MAX(temp1.TC)as LN from 
-(
-select MaTho,SUM(KhoanTho) as TC from CHITIET_HD
-group by MaTho ) as temp1) as te2,
-(
-select MaTho,SUM(KhoanTho) as TC from CHITIET_HD
-group by MaTho ) as te3
+from (select MAX(temp1.TC)as LN 
+	  from (select MaTho,SUM(KhoanTho) as TC 
+	        from CHITIET_HD
+			group by MaTho ) as temp1) as te2,
+
+			(select MaTho,SUM(KhoanTho) as TC 
+			from CHITIET_HD
+			group by MaTho ) as te3
 where te2.LN = te3.TC
 
 --------------------
